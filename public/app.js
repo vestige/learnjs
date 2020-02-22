@@ -1,8 +1,9 @@
 'use strict';
 var learnjs = {};
 
-learnjs.problemView = function() {
-    return $('<div class="problem-view">').text('Comming soon.');
+learnjs.problemView = function(no) {
+    var title = 'Problem #' + no + ' Comming soon!';
+    return $('<div class="problem-view">').text(title);
 }
 
 learnjs.showView = function(hash) {
@@ -14,4 +15,8 @@ learnjs.showView = function(hash) {
     if (viewFn) {
         $('.view-container').empty().append(viewFn(hashParts[1]));
     }
+}
+
+learnjs.appOnReady = function() {
+    learnjs.showView(window.location.hash);
 }

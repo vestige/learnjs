@@ -12,4 +12,15 @@ describe('LearnJS', function(){
         learnjs.showView('#problem-42');
         expect(learnjs.problemView).toHaveBeenCalledWith('42');
     });
+    describe('problem view', function(){
+        it('has a title number includes the problem number', function(){
+            var view = learnjs.problemView('1');
+            expect(view.text()).toEqual('Problem #1 Comming soon!');
+        });
+    });
+    it('invokes the router when loaded', function(){
+        spyOn(learnjs, 'showView');
+        learnjs.appOnReady();
+        expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
+    });
 });
