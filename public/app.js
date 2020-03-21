@@ -1,9 +1,30 @@
 'use strict';
 var learnjs = {};
+learnjs.problems = [
+    {
+        description: "What is truth?",
+        code: "function problem() { return __; }"
+    },
+    {
+        description: "Simple Math",
+        code: "function problem() { return 42 === 6 * __; }"
+    }
+];
 
-learnjs.problemView = function(no) {
-    var title = 'Problem #' + no + ' Comming soon!';
-    return $('<div class="problem-view">').text(title);
+learnjs.applyObejct = function(obj, elem) {
+    for (var key in obj) {
+        elem.find('[data-name="' + key + '"]').text(obj[key]);
+    }
+};
+
+learnjs.problemView = function(data) {
+    var no = parseInt(data, 10);
+
+    var view = $('.templates .problem-view').clone();
+    view.find('.title').text('Problem #' + no );
+
+    learnjs.applyObejct(learnjs.problems[no-1], view);
+    return view;
 }
 
 learnjs.showView = function(hash) {
